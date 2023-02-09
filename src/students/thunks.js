@@ -10,7 +10,6 @@ import {
 export const loadStudents = () => async (dispatch) => {
   try {
     dispatch(loadStudentsInProgress());
-    console.log("In thunk try");
     const response = await fetch("http://localhost:8080/students-delay");
     const students = await response.json();
     dispatch(loadStudentsSuccess(students));

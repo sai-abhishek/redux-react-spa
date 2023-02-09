@@ -1,28 +1,58 @@
 import React from "react";
-// import "./StudentListItem.css";
+import styled from "styled-components";
+
+const StudentItemContainer = styled.div`
+  box-shadow: 0 4px 8px grey;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 15px;
+  position: relative;
+  background: white;
+`;
+const ButtonsContainer = styled.div`
+  display: flex;
+  justify-content: end;
+`;
+const Button = styled.button`
+  font-size: 15px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+const CompleteButton = styled(Button)`
+  display: inline-block;
+  background-color: #7fcd68;
+`;
+const WithdrawButton = styled(Button)`
+  display: inline-block;
+  background-color: #24bfd6;
+  margin-left: 8px;
+`;
 
 const StudentListItem = ({ student, onRemovePressed, onCompletePressed }) => (
-  <div className="student-item-container">
+  <StudentItemContainer>
     <h2>{student.name}</h2>
     <h4>Email: {student.email}</h4>
     <h4>Essay subject: {student.subject}</h4>
-    <div className="buttons-container">
+    <ButtonsContainer>
       {student.hasCompleted ? null : (
-        <button
+        <CompleteButton
           onClick={() => onCompletePressed(student.id)}
           className="completed-button"
         >
           Mark As Completed
-        </button>
+        </CompleteButton>
       )}
-      <button
+      <WithdrawButton
         onClick={() => onRemovePressed(student.id)}
         className="remove-button"
       >
         Withdraw
-      </button>
-    </div>
-  </div>
+      </WithdrawButton>
+    </ButtonsContainer>
+  </StudentItemContainer>
 );
 
 export default StudentListItem;

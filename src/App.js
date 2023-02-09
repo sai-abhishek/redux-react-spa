@@ -1,11 +1,22 @@
 import React from "react";
-import "./App.css";
+
 import StudentList from "./students/StudentList";
+import styled from "styled-components";
+import Toolbar from "./students/Toolbar";
+
+const AppContainer = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222222;
+  width: 100%;
+  height: 100%;
+  background: #eae8e8;
+`;
 
 const App = () => (
-  <div className="App">
+  <AppContainer>
+    <Toolbar />
     <StudentList />
-  </div>
+  </AppContainer>
 );
 
 export default App;

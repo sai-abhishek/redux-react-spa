@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import NewStudentForm from "./NewStudentForm";
 import StudentListItem from "./StudentListItem";
-// import "./StudentList.css";
 import {
   markStudentCompleteRequest,
   displayAlert,
@@ -10,6 +9,12 @@ import {
   removeStudentRequest,
 } from "./thunks";
 import { getStudents, getStudentsLoading } from "./selectors";
+import styled from "styled-components";
+
+const StudentListContainer = styled.div`
+  max-width: 750px;
+  margin: auto;
+`;
 
 const StudentList = ({
   students = [],
@@ -24,7 +29,7 @@ const StudentList = ({
 
   const loading = <div>Loading students...</div>;
   const content = (
-    <div className="list-wrapper">
+    <StudentListContainer>
       <NewStudentForm />
       {students.map((student) => (
         <StudentListItem
@@ -34,7 +39,7 @@ const StudentList = ({
           onCompletePressed={onCompletePressed}
         />
       ))}
-    </div>
+    </StudentListContainer>
   );
 
   return isLoading ? loading : content;
