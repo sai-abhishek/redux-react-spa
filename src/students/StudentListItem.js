@@ -8,6 +8,10 @@ const StudentItemContainer = styled.div`
   padding: 15px;
   position: relative;
   background: white;
+  border: ${(props) =>
+    new Date(props.joinedAt) > new Date(Date.now() - 86400000 * 5)
+      ? "none"
+      : "2px solid #fc6e50"};
 `;
 const ButtonsContainer = styled.div`
   display: flex;
@@ -32,10 +36,11 @@ const WithdrawButton = styled(Button)`
 `;
 
 const StudentListItem = ({ student, onRemovePressed, onCompletePressed }) => (
-  <StudentItemContainer>
+  <StudentItemContainer joinedAt={student.joinedAt}>
     <h2>{student.name}</h2>
     <h4>Email: {student.email}</h4>
     <h4>Essay subject: {student.subject}</h4>
+    <p>Joined at: {student.joinedAt}</p>
     <ButtonsContainer>
       {student.hasCompleted ? null : (
         <CompleteButton
